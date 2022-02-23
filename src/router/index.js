@@ -3,9 +3,26 @@ import Home from '../views/Home.vue'
 
 const routes = [
   {
-    path: '/',
+    path: '',
     name: 'Home',
-    component: Home
+    component: Home,
+    children:[
+      {
+        path:'',
+        name:"HomeContent",
+        component:()=>import ("@/components/HomeContent.vue")
+      },
+      {
+        path:"musicList",
+        name:"MusicList",
+        component:()=>import ("@/components/MusicList.vue")
+      },
+      {
+        path:"search",
+        name:"Search",
+        component:()=>import ("@/components/Search.vue")
+      },
+    ]
   },
   {
     path: '/about',
