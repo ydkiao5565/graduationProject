@@ -2,13 +2,13 @@
   <div class="dPlaylist">
     <div class="top">每日推荐</div>
     <div class="content">
-      <div class="list" v-for="(item,index) in dailyPlaylist" key="index">
+      <router-link :to="{path:'/musiclist',query:{id:item.id}}" class="list" v-for="(item,index) in dailyPlaylist" key="index">
         <img :src="item.picUrl" alt="">
         <div class="number">
           <svg class="icon" aria-hidden="true">
             <use xlink:href="#icon-play-w"></use>
           </svg>
-          <span>{{item.playCount}}</span>
+          <span>{{changeValue(item.playCount)}}</span>
         </div>
         <div class="play">
           <svg class="icon" aria-hidden="true">
@@ -16,7 +16,7 @@
           </svg>
         </div>
         <div class="name">{{item.name}}</div>
-      </div>
+      </router-link>
     </div>
   </div>
 </template>
@@ -27,6 +27,20 @@ export default {
   data() {
     return {
       dailyPlaylist:[]
+    }
+  },
+  methods:{
+    changeValue(value) {
+      let res = 0
+      if(value>=100000000) {
+        res = value/100000000
+        res = res.toFixed(2) + '亿'
+      }
+      else if(value>10000) {
+        res = value/10000
+        res = res.toFixed(2) + '万'
+      }
+      return res
     }
   },
   async mounted() {

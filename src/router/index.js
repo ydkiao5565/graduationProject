@@ -15,7 +15,14 @@ const routes = [
       {
         path:"musicList",
         name:"MusicList",
-        component:()=>import ("@/components/MusicList.vue")
+        component:()=>import ("@/components/MusicList.vue"),
+        children:[
+          {
+            path:"",
+            name:"List",
+            component:()=>import ("@/components/ListTable.vue"),
+          }
+        ]
       },
       {
         path:"search",
