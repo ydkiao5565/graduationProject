@@ -1,20 +1,21 @@
 <template>
   <MainNav></MainNav>
   <router-view></router-view>
+  <PlayController></PlayController>
 </template>
 
 <script>
 import MainNav from '@/components/MainNav.vue'
+import PlayController from '@/components/PlayController.vue'
 export default {
   components:{
-    MainNav
+    MainNav,PlayController
   }
 }
 </script>
 
 <style lang="less">
 #app {
-  box-sizing: border-box;
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;

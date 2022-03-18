@@ -13,6 +13,9 @@
           </div>
           <div class="control">
             <div class="play">
+              <svg class="icon" aria-hidden="true">
+                <use xlink:href="#icon-play-w"></use>
+              </svg>
               <span>播放全部</span>
             </div>
             <div class="like">
@@ -114,7 +117,9 @@ export default {
           margin-bottom: 10px;
           display: flex;
           align-items: center;
+          
           .play {
+            cursor: pointer;
             height: 32px;
             width: 130px;
             background-color:rgb(255, 66, 66);
@@ -122,6 +127,14 @@ export default {
             color: #fff;
             line-height: 32px;
             font-size: 15px;
+            display: flex;
+            align-items: center;
+            .icon {
+              margin-left: 10px ;
+              margin-right: 5px;
+              width: 22px;
+              height: 22px;
+            }
           }
           .like {
             margin-left: 5px;

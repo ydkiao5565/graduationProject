@@ -6,11 +6,16 @@ export function getBanner(type=1) {
 }
 
 //获取每日推荐歌单
-export function getDailyPlaylist(limit=10) {
+export function getDailyPlaylist(limit=30) {
   return axios.get(`http://localhost:3000/personalized?limit=${limit}`)
 }
 
 //获取歌单详情
 export function getPlaylistDetail(id) {
   return axios.get(`http://localhost:3000/playlist/detail?id=${id}`)
+}
+
+//获取歌单所有歌曲
+export function getPlaylistAll(id) {
+  return axios.get(`http://localhost:3000/playlist/track/all?id=${id}`)
 }

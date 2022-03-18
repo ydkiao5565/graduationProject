@@ -4,12 +4,12 @@
       <img src="" alt="">
     </div>
     <div class="content">
-      <div class="btn" id="left">
+      <div class="btn" id="left" @click="$router.go(-1)">
         <svg class="icon" aria-hidden="true">
           <use xlink:href="#icon-fanhui"></use>
         </svg>
       </div>
-      <div class="btn" id="right">
+      <div class="btn" id="right" @click="$router.go(1)">
         <svg class="icon" aria-hidden="true">
           <use xlink:href="#icon-xiayiyeqianjinchakangengduo"></use>
         </svg>
