@@ -61,10 +61,11 @@ export default {
   mounted() {
     this.$store.commit('setPaused',true)
     this.$store.dispatch('reqLyric',{id: this.$store.state.playlist[this.$store.state.playCurrentIndex].id})
+    // console.log(this.$store.state.currentTime)
   },
   updated() {
     this.$store.dispatch('reqLyric',{id: this.$store.state.playlist[this.$store.state.playCurrentIndex].id})
-
+    // console.log(this.$store.state.currentTime)
   },
   components: {
     MusicLyric
@@ -86,12 +87,18 @@ export default {
       if(this.$refs.audio.paused){
         this.$refs.audio.play()
         this.$store.commit('setPaused',false)
+        this.UpdateTime()
       }
       else{
         this.$refs.audio.pause()
         this.$store.commit('setPaused',true)
-
+        clearInterval(this.$store.state.id)
       }
+    },
+    UpdateTime() {
+      this.$store.state.id = setInterval(() => {
+        this.$store.commit('setCurrentTime',this.$refs.audio.currentTime)
+      }, 500);
     },
     preMusic() {
       this.$store.commit('setPlayCurrent',this.$store.state.playCurrentIndex-1)

@@ -16,7 +16,9 @@ export default createStore({
     ],
     playCurrentIndex:0,
     ispaused:false,
-    lyric:''
+    lyric:'',
+    IntervalId:0,
+    currentTime:0
   },
   getters:{
     lyricList:function(state) {
@@ -30,7 +32,14 @@ export default createStore({
           content:item,
           time:parseInt(mill)+parseInt(sec)*1000+parseInt(min)*60*1000}
       })
-      console.log(arr)
+      // console.log(arr)
+      arr.forEach((item,i)=> {
+        if(i==arr.length-1) {
+          item.next = arr[arr.length-1].time
+        }else {
+          item.next = arr[i+1].time
+        }
+      })
       return arr
     }
   },
@@ -46,6 +55,9 @@ export default createStore({
     },
     setLyric(state,value) {
       state.lyric = value
+    },
+    setCurrentTime(state,value) {
+      state.currentTime = value
     }
   },
   actions: {
@@ -53,7 +65,7 @@ export default createStore({
       console.log(payload)
       let result = await getLyric(payload.id)
       content.commit('setLyric',result.data.lrc.lyric)
-      console.log(result.data.lrc.lyric)
+      // console.log(result.data.lrc.lyric)
     }
   },
   modules: {
