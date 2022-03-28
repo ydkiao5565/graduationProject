@@ -2,7 +2,7 @@
   <div class="dPlaylist">
     <div class="top">每日推荐</div>
     <div class="content">
-      <router-link :to="{path:'/musiclist',query:{id:item.id}}" class="list" v-for="(item,index) in dailyPlaylist" key="index">
+      <router-link :to="{path:'/musiclist',query:{id:item.id}}" class="list" v-for="(item,index) in dailyPlaylist" key="index" @click="changeList()">
         <img :src="item.picUrl" alt="">
         <div class="number">
           <svg class="icon" aria-hidden="true">
@@ -30,6 +30,9 @@ export default {
     }
   },
   methods:{
+    changeList() {
+      this.$store.commit('setPaused',true)
+    },
     changeValue(value) {
       let res = 0
       if(value>=100000000) {

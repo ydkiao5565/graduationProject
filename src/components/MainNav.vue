@@ -22,8 +22,8 @@
       </div>
     </div>
     <div class="mine">
-      <img src="@/assets/logo.png" alt="">
-      <span>奥里给干净又卫生</span>
+      <img src="" alt="">
+      <span>········</span>
     </div>
   </div>
 </template>
