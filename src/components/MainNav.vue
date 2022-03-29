@@ -14,7 +14,7 @@
           <use xlink:href="#icon-xiayiyeqianjinchakangengduo"></use>
         </svg>
       </div>
-      <div class="search">
+      <div class="search" @click="$router.push('search')">
         <svg class="icon" aria-hidden="true">
           <use xlink:href="#icon-sousuo"></use>
         </svg>
@@ -66,7 +66,7 @@
       cursor: pointer;
     }
     .search {
-      width: 150px;
+      width: 65px;
       height: 25px;
       background-color:rgba(120, 120, 120, 0.1);
       border-radius: 12.5px;
