@@ -68,6 +68,7 @@ export default {
 <style lang="less">
 .listTable {
   margin-top: 10px;
+  padding-bottom: 70px;
   .nav {
     font-size: 14px;
     color: #666;

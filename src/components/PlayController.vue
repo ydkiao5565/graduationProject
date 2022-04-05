@@ -101,14 +101,18 @@ export default {
       }, 500);
     },
     preMusic() {
-      this.$store.commit('setPlayCurrent',this.$store.state.playCurrentIndex-1)
+      if(this.$store.state.playCurrentIndex>0) {
+        this.$store.commit('setPlayCurrent',this.$store.state.playCurrentIndex-1)
+      }
       if(!this.$refs.audio.paused){
         this.$refs.audio.pause()
         this.$store.commit('setPaused',true)
       }
     },
     nextMusic() {
-      this.$store.commit('setPlayCurrent',this.$store.state.playCurrentIndex+1)
+      if(this.$store.state.playCurrentIndex<this.$store.state.playlist.length-1) {
+        this.$store.commit('setPlayCurrent',this.$store.state.playCurrentIndex+1)
+      }
       if(!this.$refs.audio.paused){
         this.$refs.audio.pause()
         this.$store.commit('setPaused',false)

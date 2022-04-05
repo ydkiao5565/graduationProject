@@ -16,7 +16,7 @@
               <svg class="icon" aria-hidden="true">
                 <use xlink:href="#icon-play-w"></use>
               </svg>
-              <span>播放全部</span>
+              <span @click="playAll">播放全部</span>
             </div>
             <div class="like">
               <span>收藏</span>
@@ -69,6 +69,12 @@ export default {
     this.list = res.data
     console.log(this.list)
   },
+  methods:{
+    playAll() {
+      this.$store.commit('setPlayCurrent',0)
+      this.$store.commit('setPaused',true)
+    }
+  }
 }
 </script>
 

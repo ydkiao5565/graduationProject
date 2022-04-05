@@ -23,16 +23,17 @@ export default createStore({
   getters:{
     lyricList:function(state) {
       let arr = state.lyric.split(/\n/igs).map((item,i)=>{
+        // item = item.slice(0,10)+ ' ' + item.slice(10)
         let min = item.slice(1,3)
         let sec = item.slice(4,6)
         let mill = item.slice(7,10)
         return{
           min,sec,mill,
-          lyric:item.slice(11,item.length),
+          lyric:item.slice(10,item.length),
           content:item,
           time:parseInt(mill)+parseInt(sec)*1000+parseInt(min)*60*1000}
       })
-      // console.log(arr)
+      console.log(arr)
       arr.forEach((item,i)=> {
         if(i==arr.length-1) {
           item.next = arr[arr.length-1].time

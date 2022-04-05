@@ -25,8 +25,11 @@ export default {
       console.log(newValue)
       console.log([this.$refs.lyric])
       let p = document.querySelector('p.active')
-      console.log([p])
-      let offsetTop = p.offsetTop
+      // console.log([p])
+      let offsetTop =null
+      if(p) {
+        offsetTop = p.offsetTop
+      }
       if(offsetTop>=262) {
         this.$refs.lyric.scrollTop = offsetTop-262
       }
