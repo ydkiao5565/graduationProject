@@ -31,7 +31,8 @@ export default createStore({
           min,sec,mill,
           lyric:item.slice(10,item.length),
           content:item,
-          time:parseInt(mill)+parseInt(sec)*1000+parseInt(min)*60*1000}
+          time:parseInt(mill)+parseInt(sec)*1000+parseInt(min)*60*1000
+        }
       })
       console.log(arr)
       arr.forEach((item,i)=> {
@@ -66,7 +67,7 @@ export default createStore({
       console.log(payload)
       let result = await getLyric(payload.id)
       content.commit('setLyric',result.data.lrc.lyric)
-      // console.log(result.data.lrc.lyric)
+      // console.log(result.data)
     }
   },
   modules: {

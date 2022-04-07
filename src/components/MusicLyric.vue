@@ -22,8 +22,8 @@ export default {
   },
   watch: {
     currentTime:function(newValue) {
-      console.log(newValue)
-      console.log([this.$refs.lyric])
+      // console.log(newValue)
+      // console.log([this.$refs.lyric])
       let p = document.querySelector('p.active')
       // console.log([p])
       let offsetTop =null
