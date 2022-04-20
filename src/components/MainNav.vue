@@ -22,22 +22,24 @@
       </div>
     </div>
     <div class="mine">
-      <img src="" alt="">
-      <span>········</span>
+      <img :src="$store.state.user.userDetail.data.profile.avatarUrl" alt="" @click="$router.push('/mine')">
+      <span>{{this.$store.state.user.userDetail.data.profile.nickname}}</span>
+      
     </div>
   </div>
 </template>
 
+
 <style lang="less">
 .mainNav {
-  width: calc(100vw - 17px);
+  width: 100vw;
   height: 60px;
   background-color:rgb(255, 66, 66);
   display: flex;
   justify-content: space-between;
   .logo{
     flex: 1;
-    background-color:lightpink;
+    // background-color:lightpink;
   }
   .content {
     flex: 3;
@@ -101,6 +103,7 @@
     display: flex;
     justify-content: flex-end;
     align-items: center;
+    padding-right: 20px;
     img {
       width: 30px;
       height: 30px;

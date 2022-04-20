@@ -1,5 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import Home from '../views/Home.vue'
+import store from '@/store/index.js'
+
 
 const routes = [
   {
@@ -35,7 +37,28 @@ const routes = [
     path:"/lyric",
     name:"Lyric",
     component:()=>import ("@/components/MusicLyric.vue")
-  }
+  },
+  {
+    path:"/login",
+    name:"Login",
+    component:()=>import ("@/components/Login.vue")
+  },
+  {
+    path:"/mine",
+    name:"Mine",
+    //路由守卫
+    beforeEnter:(to,from,next)=> {
+      console.log(store.state.user)
+      if(store.state.user.isLogin) {
+        next()
+      }
+      else {
+        next('/login')
+      }
+    },
+    component:()=>import ("@/components/Mine.vue")
+
+  },
 ]
 
 const router = createRouter({

@@ -50,7 +50,7 @@ import {searchMusic} from '@/api/index.js'
 export default {
   data() {
     return {
-      placeholder: 'rubia',
+      placeholder: '陈奕迅',
       searchKey:'',
       keyWordsList:[],
       searchSongs:[]

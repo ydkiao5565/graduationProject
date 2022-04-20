@@ -1,5 +1,6 @@
 import { createStore } from 'vuex'
-import {getLyric} from '@/api/index.js'
+import {getLyric,phoneLogin,getUserDetail} from '@/api/index.js'
+
 export default createStore({
   state: {
     playlist:[
@@ -18,7 +19,19 @@ export default createStore({
     ispaused:false,
     lyric:'',
     IntervalId:0,
-    currentTime:0
+    currentTime:0,
+    user:{
+      isLogin:false,
+      account:{},
+      userDetail:{
+        data:{
+          profile:{
+            avatarUrl:'',
+            nickname:''
+          }
+        }
+      }
+    }
   },
   getters:{
     lyricList:function(state) {
@@ -60,14 +73,35 @@ export default createStore({
     },
     setCurrentTime(state,value) {
       state.currentTime = value
+    },
+    setUser(state,value) {
+      state.user = value
     }
   },
   actions: {
     async reqLyric(content,payload) {
-      console.log(payload)
+      // console.log(payload)
       let result = await getLyric(payload.id)
       content.commit('setLyric',result.data.lrc.lyric)
       // console.log(result.data)
+    },
+    async login(content,payload) {
+      // console.log(payload)
+      let result = await phoneLogin(payload.phone,payload.password)
+      if(result.data.code == 200) {
+        content.state.user.isLogin = true;
+        //保存用户账号信息
+        content.state.user.account = result.data.account
+        //获取用户详情
+        let userDetail = await getUserDetail(result.data.account.id)
+        content.state.user.userDetail = userDetail
+        console.log(userDetail)
+        //本地存储用户
+        localStorage.userData = JSON.stringify(content.state.user)
+        content.commit('setUser',content.state.user)
+      }
+      console.log(result)
+      return result
     }
   },
   modules: {

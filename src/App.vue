@@ -10,6 +10,11 @@ import PlayController from '@/components/PlayController.vue'
 export default {
   components:{
     MainNav,PlayController
+  },
+  mounted(){
+    let userData = JSON.parse(localStorage.userData)
+    console.log(userData)
+    this.$store.commit('setUser',userData)
   }
 }
 </script>
@@ -21,7 +26,7 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-
+  overflow-x:hidden ;
 }
 a {
   color: #333;

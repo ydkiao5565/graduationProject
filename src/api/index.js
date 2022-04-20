@@ -29,3 +29,18 @@ export function getLyric(id) {
 export function searchMusic(keywords) {
   return axios.get(`http://localhost:3000/cloudsearch?keywords=${keywords}`)
 }
+
+//手机登录
+export function phoneLogin(phone,password) {
+  return axios.get(`http://localhost:3000/login/cellphone?phone=${phone}&password=${password}`)
+}
+
+//获取用户详情
+export function getUserDetail(uid) {
+  return axios.get(`http://localhost:3000/user/detail?uid=${uid}`)
+}
+
+//获取用户歌单
+export function getPlaylist(uid) {
+  return axios.get(`http://localhost:3000/user/playlist?uid=${uid}`)
+}
