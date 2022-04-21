@@ -1,5 +1,6 @@
 import { createStore } from 'vuex'
 import {getLyric,phoneLogin,getUserDetail} from '@/api/index.js'
+import unlogin from '@/assets/img/unlogin.jpeg'
 
 export default createStore({
   state: {
@@ -26,8 +27,8 @@ export default createStore({
       userDetail:{
         data:{
           profile:{
-            avatarUrl:'',
-            nickname:''
+            avatarUrl:unlogin,
+            nickname:'未登录用户'
           }
         }
       }

@@ -2,7 +2,7 @@
   <div class="mine">
     <MineBg></MineBg>
     <LeftNav></LeftNav>
-    <MineBody></MineBody>
+    <MineBody id="mineBody"></MineBody>
   </div>
 </template>
 
@@ -19,5 +19,8 @@ export default {
 .mine{
   display: flex;
   justify-content: flex-start;
+  #mineBody {
+    flex: 1;
+  }
 }
 </style>

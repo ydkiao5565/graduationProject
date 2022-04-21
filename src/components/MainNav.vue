@@ -22,12 +22,44 @@
       </div>
     </div>
     <div class="mine">
-      <img :src="$store.state.user.userDetail.data.profile.avatarUrl" alt="" @click="$router.push('/mine')">
-      <span>{{this.$store.state.user.userDetail.data.profile.nickname}}</span>
+      <img :src="avatarUrl" alt="" @click="$router.push('/mine')">
+      <span>{{this.nickname}}</span>
       
     </div>
   </div>
 </template>
+
+<script>
+
+export default {
+  data() {
+    return {
+      avatarUrl:'',
+      nickname:''
+    }
+  },
+  computed:{
+    stateUser() {
+      return this.$store.state.user.isLogin
+    }
+  },
+  mounted() {
+    this.avatarUrl = this.$store.state.user.userDetail.data.profile.avatarUrl
+    this.nickname = this.$store.state.user.userDetail.data.profile.nickname
+  },
+  updated() {
+    this.avatarUrl = this.$store.state.user.userDetail.data.profile.avatarUrl
+    this.nickname = this.$store.state.user.userDetail.data.profile.nickname
+  },
+  watch:{
+    stateUser(newValue,oldValue) {
+      this.avatarUrl = this.$store.state.user.userDetail.data.profile.avatarUrl
+      this.nickname = this.$store.state.user.userDetail.data.profile.nickname
+      this.$forceUpdate()
+    }
+  }
+}
+</script>
 
 
 <style lang="less">
@@ -108,6 +140,7 @@
       width: 30px;
       height: 30px;
       border-radius: 15px;
+      cursor:pointer;
     }
     span {
       color: #fff;
