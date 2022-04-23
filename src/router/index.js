@@ -46,6 +46,25 @@ const routes = [
   {
     path:"/mine",
     name:"Mine",
+    children:[
+      {
+        path:"",
+        name:"MineBody",
+        component:()=>import ("@/components/MineBody.vue"),
+      },
+      {
+        path:"/mylist",
+        name:"Mylist",
+        component:()=>import ("@/components/MusicList.vue"),
+        children:[
+          {
+            path:"",
+            name:"List",
+            component:()=>import ("@/components/ListTable.vue"),
+          }
+        ]
+      }
+    ],
     //路由守卫
     beforeEnter:(to,from,next)=> {
       console.log(store.state.user)

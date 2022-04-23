@@ -1,32 +1,32 @@
 <template>
-  <div class="dPlaylist">
-    <div class="top">每日推荐</div>
+  <div class="mplaylist">
+    <div class="top">我的歌单</div>
     <div class="content">
-      <router-link :to="{path:'/musiclist',query:{id:item.id}}" class="list" v-for="(item,index) in dailyPlaylist" key="index" @click="changeList()">
-        <img :src="item.picUrl" alt="">
+      <router-link :to="{path:'/mylist',query:{id:item.id}}" class="list" v-for="(item,index) in myPlaylist" key="index" @click="changeList()">
+        <img :src="item.coverImgUrl" alt="">
         <div class="number">
           <svg class="icon" aria-hidden="true">
             <use xlink:href="#icon-play-w"></use>
           </svg>
-          <span>{{changeValue(item.playCount)}}</span>
+          <span>{{item.playCount}}</span>
         </div>
         <div class="play">
           <svg class="icon" aria-hidden="true">
             <use xlink:href="#icon-play-w"></use>
           </svg>
         </div>
-        <div class="name">{{item.name}}</div>
+        <div class="name">{{changeValue(item.name)}}</div>
       </router-link>
     </div>
   </div>
 </template>
 
 <script>
-import {getDailyPlaylist} from '@/api/index.js'
+import {getPlaylist} from '@/api/index.js'
 export default {
   data() {
     return {
-      dailyPlaylist:[]
+      myPlaylist:[]
     }
   },
   methods:{
@@ -49,39 +49,59 @@ export default {
       return res
     }
   },
+  // async mounted() {
+  //   let res = await getDailyPlaylist()
+  //   this.dailyPlaylist = res.data.result
+  //   console.log(res)
+  // }
   async mounted() {
-    let res = await getDailyPlaylist()
-    this.dailyPlaylist = res.data.result
-    console.log(res)
-  }
+    let playlist = await getPlaylist(this.$store.state.user.account.id)
+    this.myPlaylist = playlist.data.playlist
+    console.log(this.myPlaylist)
+  },
 }
 </script>
 
 <style lang="less">
-.dPlaylist {
+.mplaylist {
   margin-top: -10px;
   padding: 0 20px;
   .top {
     text-align: left;
     font-size: 20px;
     font-weight: 900;
+    padding-bottom: 5px;
   }
-  .top:after {
+  .top:before {
     content: '';
-    display: inline-block;
-    width: 10px;
-    height: 10px;
-    border-top: 2px solid #000;
-    border-right: 2px solid #000;
-    transform: rotate(45deg);
+    position: absolute;
+    left: 0px;
+    bottom: 0;
+    top: auto;
+    right: auto;
+    width: 0px;
+    height: 5px;
+    background-color: rgb(255, 57, 57);
+    display: none;
+    transition: all .3s;
   }
+  // .top:after {
+  //   content: '';
+  //   display: inline-block;
+  //   width: 10px;
+  //   height: 10px;
+  //   border-top: 2px solid #000;
+  //   border-right: 2px solid #000;
+  //   transform: rotate(45deg);
+  // }
   .content {
     margin-top: 10px;
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
+    // justify-content: space-between;
     .list {
       margin-bottom: 10px;
+      margin-right: 11px;
       // background-color:lightskyblue;
       width: 19%;
       height: 280px;
@@ -142,4 +162,20 @@ export default {
     }
   }
 }
+.mplaylist:hover .top:before {
+    display: block;
+    animation-name: mymove;
+    animation-duration: .3s;
+    animation-fill-mode: forwards;
+    // transition: all .3s linear;
+  }
+  @keyframes mymove {
+    0% {
+        width: 0;
+    }
+    100% {
+        width: 80px;
+            
+    }
+  }
 </style>

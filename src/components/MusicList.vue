@@ -44,6 +44,7 @@
 
 <script>
 import {getPlaylistDetail} from '@/api/index.js'
+import {getLogStatus} from '@/api/index.js'
 export default {
   data() {
     return {
@@ -68,6 +69,8 @@ export default {
     let res = await getPlaylistDetail(this.$route.query.id)
     this.list = res.data
     console.log(this.list)
+    let status = await getLogStatus()
+    console.log(status)
   },
   methods:{
     playAll() {
@@ -80,7 +83,8 @@ export default {
 
 <style lang="less">
 .musicList{
-  width: 85%;
+  width: 100%;
+  background-color: #fff;
   .mainTop {
     width: 100%;
     padding: 30px 30px 0 30px;

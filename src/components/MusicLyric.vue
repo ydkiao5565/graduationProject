@@ -47,6 +47,7 @@ export default {
   background-color: #aaa;
   width: 100%;
   height: 100%;
+  z-index: 100;
   .bg {
     img {
       z-index: -1;

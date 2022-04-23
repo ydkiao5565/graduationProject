@@ -94,14 +94,16 @@ export default {
   },
   methods:{
     changeLyPage() {
+      console.log(this.isLyric)
       if(!this.isLyric) {
         this.$router.push({path: '/lyric'})
-        this.$refs.playContorller.style.backgroundColor = "rgba(255, 255, 255,.4)"
+        this.$refs.playContorller.style.backgroundColor = "rgba(255, 255, 255, 0.5)"
         this.isLyric = !this.isLyric
+        
       }
       else {
         this.$router.go(-1)
-        this.$refs.playContorller.style.backgroundColor = "rgba(255, 255, 255,1)"
+        this.$refs.playContorller.style.backgroundColor = "rgba(255, 255, 255, 1)"
         this.isLyric = !this.isLyric
       }
     },
@@ -242,7 +244,7 @@ export default {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  z-index: 99;
+  z-index: 101;
   .left {
     cursor: pointer;
     height: 100%;

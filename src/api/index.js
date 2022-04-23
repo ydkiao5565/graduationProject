@@ -44,3 +44,8 @@ export function getUserDetail(uid) {
 export function getPlaylist(uid) {
   return axios.get(`http://localhost:3000/user/playlist?uid=${uid}`)
 }
+
+//获取登录状态
+export function getLogStatus() {
+  return axios.get(`http://localhost:3000/user/account`)
+}

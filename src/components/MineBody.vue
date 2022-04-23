@@ -20,12 +20,10 @@ import {getPlaylist} from '@/api/index.js'
 import MineContent from '@/components/MineContent.vue'
 export default {
   components:{MineContent},
-  async mounted() {
-    let playlist = await getPlaylist(this.$store.state.user.account.id)
-    console.log(playlist)
-  },
+  
   methods:{
     logout() {
+      
       localStorage.removeItem('userData')
       this.$router.push('/login')
     }

@@ -27,7 +27,10 @@ export default {
   text-align: center;
   color: #2c3e50;
   overflow-x:hidden ;
-  cursor:context-menu
+  cursor:context-menu;
+  padding-top: 60px;
+  padding-left: 15vw;
+  
 }
 a {
   color: #333;

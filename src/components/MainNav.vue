@@ -64,9 +64,13 @@ export default {
 
 <style lang="less">
 .mainNav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 99;
   width: 100vw;
   height: 60px;
-  background-color:rgb(255, 66, 66);
+  background-color:#ff2121;
   display: flex;
   justify-content: space-between;
   .logo{

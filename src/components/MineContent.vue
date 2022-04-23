@@ -18,14 +18,15 @@
             <div class="signaturein">个人介绍：{{this.$store.state.user.userDetail.data.profile.signature}}</div>
           </div>
         </div>
-        
     </div>
-    <div class="playlist"></div>
+    <MyPlaylist></MyPlaylist>
   </div>
 </template>
 
 <script>
+import MyPlaylist from '@/components/MyPlaylist.vue'
 export default {
+  components:{MyPlaylist},
   computed:{
     gender() {
       if(this.$store.state.user.userDetail.data.profile.gender == 1) {
@@ -45,24 +46,27 @@ export default {
 <style lang="less">
 .mineContent {
   width: 100%;
-  height: 1000px;
+  // height: 1000px;
   background-color: rgba(255, 255, 255, .95);
   border-radius: 20px;
   padding-top: 10px;
   .profile {
+    padding-bottom: 20px;
+    padding-left: 12px;
+    margin-bottom: 10px;
     .title {
       position: relative;
       width: 80px;
       padding-bottom: 5px;
       margin-top: 5px;
       margin-left: 5px;
-      font-size: 18px;
+      font-size: 20px;
       font-weight: 900;
       // border-bottom: 4px solid rgb(255, 57, 57);
       .titlein:before {
         content: '';
         position: absolute;
-        left: 16px;
+        left: 0;
         bottom: 0;
         top: auto;
         right: auto;
@@ -167,20 +171,20 @@ export default {
     }
   }
   .profile:hover .titlein:before {
-        display: block;
-        animation-name: move;
-        animation-duration: .3s;
-        animation-fill-mode: forwards;
-        // transition: all .3s linear;
-      }
-      @keyframes move {
-        0% {
-            width: 0;
-        }
-        100% {
-            width: 50px;
+    display: block;
+    animation-name: move;
+    animation-duration: .3s;
+    animation-fill-mode: forwards;
+    // transition: all .3s linear;
+  }
+  @keyframes move {
+    0% {
+        width: 0;
+    }
+    100% {
+        width: 80px;
             
-        }
-      }
+    }
+  }
 }
 </style>
