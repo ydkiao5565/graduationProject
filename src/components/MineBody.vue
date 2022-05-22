@@ -7,7 +7,7 @@
       <div class="nickname">{{this.$store.state.user.userDetail.data.profile.nickname}}</div>
       <div class="leave" @click="logout()">
         <div class="block"></div>
-        <div class="text">Sign Out</div>
+        <div class="text">LogOut</div>
       </div>
     </div>
 

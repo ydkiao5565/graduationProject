@@ -55,6 +55,7 @@ export default {
 	// padding-top: 60px;
 	text-align: center;
 	text-transform: uppercase;
+  margin-left: -150px;
   .login {
     // width: 100%;
     // height: 300px;

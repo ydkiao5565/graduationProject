@@ -58,6 +58,8 @@ export default {
     let playlist = await getPlaylist(this.$store.state.user.account.id)
     this.myPlaylist = playlist.data.playlist
     console.log(this.myPlaylist)
+    this.$store.commit('setFavourite',playlist.data.playlist[0].id)
+    // console.log(this.$store.state.favoutite)
   },
 }
 </script>

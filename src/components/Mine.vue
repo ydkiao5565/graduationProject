@@ -24,6 +24,7 @@ export default {
 
 <style lang="less">
 .mine{
+  padding-bottom: 20px;
   display: flex;
   justify-content: flex-start;
   // padding-left: 15vw; 

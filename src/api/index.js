@@ -49,3 +49,13 @@ export function getPlaylist(uid) {
 export function getLogStatus() {
   return axios.get(`http://localhost:3000/user/account`)
 }
+
+//获取相似歌曲
+export function getSimiList(id) {
+  return axios.get(`http://localhost:3000/simi/song?id=${id}`)
+}
+
+//喜欢歌曲
+export function likeMusic(id,b=true) {
+  return axios.get(`http://localhost:3000/like=${b}?id=${id}`)
+}

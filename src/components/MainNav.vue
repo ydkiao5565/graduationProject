@@ -21,7 +21,7 @@
         <span>搜索</span>
       </div>
     </div>
-    <div class="mine">
+    <div class="mine1">
       <img :src="avatarUrl" alt="" @click="$router.push('/mine')">
       <span>{{this.nickname}}</span>
       
@@ -134,7 +134,7 @@ export default {
       }
     }
   }
-  .mine {
+  .mine1 {
     flex: 3;
     display: flex;
     justify-content: flex-end;

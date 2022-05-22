@@ -17,14 +17,14 @@ const routes = [
       {
         path:"musicList",
         name:"MusicList",
-        component:()=>import ("@/components/MusicList.vue"),
-        children:[
-          {
-            path:"",
-            name:"List",
-            component:()=>import ("@/components/ListTable.vue"),
-          }
-        ]
+        component:()=>import ("@/components/MusicListTest.vue"),
+        // children:[
+        //   {
+        //     path:"",
+        //     name:"List",
+        //     component:()=>import ("@/components/test2.vue"),
+        //   }
+        // ]
       },
     ]
   },

@@ -20,13 +20,15 @@
         </div>
     </div>
     <MyPlaylist></MyPlaylist>
+    <SimiList></SimiList>
   </div>
 </template>
 
 <script>
 import MyPlaylist from '@/components/MyPlaylist.vue'
+import SimiList from '@/components/SimiList.vue'
 export default {
-  components:{MyPlaylist},
+  components:{MyPlaylist,SimiList},
   computed:{
     gender() {
       if(this.$store.state.user.userDetail.data.profile.gender == 1) {

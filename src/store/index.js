@@ -32,19 +32,24 @@ export default createStore({
           }
         }
       }
-    }
+    },
+    favourite:7248506002
   },
   getters:{
     lyricList:function(state) {
+      //将歌词字符串分割，并遍历操作
       let arr = state.lyric.split(/\n/igs).map((item,i)=>{
-        // item = item.slice(0,10)+ ' ' + item.slice(10)
+        //分别截取分钟，秒数，毫秒数
         let min = item.slice(1,3)
         let sec = item.slice(4,6)
         let mill = item.slice(7,10)
+        //将每一句歌词返回一个对象
         return{
           min,sec,mill,
+          //截取歌词本体
           lyric:item.slice(10,item.length),
           content:item,
+          //计算每一句歌词开始时的毫秒数
           time:parseInt(mill)+parseInt(sec)*1000+parseInt(min)*60*1000
         }
       })
@@ -77,6 +82,9 @@ export default createStore({
     },
     setUser(state,value) {
       state.user = value
+    },
+    setFavourite(state,value) {
+      state.favourite = value
     }
   },
   actions: {
@@ -84,24 +92,25 @@ export default createStore({
       // console.log(payload)
       let result = await getLyric(payload.id)
       content.commit('setLyric',result.data.lrc.lyric)
-      // console.log(result.data)
+      console.log(result.data.lrc.lyric)
     },
     async login(content,payload) {
-      // console.log(payload)
+      //通过账号密码登录
       let result = await phoneLogin(payload.phone,payload.password)
+      //登录成功返回状态码200
       if(result.data.code == 200) {
+        //将用户状态设置为已登录
         content.state.user.isLogin = true;
-        //保存用户账号信息
+        //保存用户账号登录信息
         content.state.user.account = result.data.account
-        //获取用户详情
+        //通过用户id获取用户详细信息
         let userDetail = await getUserDetail(result.data.account.id)
         content.state.user.userDetail = userDetail
-        console.log(userDetail)
-        //本地存储用户
+        //localStorage本地存储用户信息
         localStorage.userData = JSON.stringify(content.state.user)
+        //提交Vuex集中管理
         content.commit('setUser',content.state.user)
       }
-      console.log(result)
       return result
     }
   },

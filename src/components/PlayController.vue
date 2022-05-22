@@ -108,17 +108,24 @@ export default {
       }
     },
     playMusic() {
+      //当音乐处于暂停状态
       if(this.$refs.audio.paused){
         this.$refs.audio.play()
+        //更改状态为播放
         this.$store.commit('setPaused',false)
+        //添加定时器，监控歌曲进度
         this.UpdateTime()
       }
+      //当歌曲处于播放状态
       else{
         this.$refs.audio.pause()
+        //更改状态为暂停
         this.$store.commit('setPaused',true)
+        //清除定时器
         clearInterval(this.$store.state.id)
       }
     },
+    //定时器方法，每0.5s更新当前歌曲播放时间
     UpdateTime() {
       this.$store.state.id = setInterval(() => {
         this.$store.commit('setCurrentTime',this.$refs.audio.currentTime)
@@ -139,7 +146,7 @@ export default {
       }
       if(!this.$refs.audio.paused){
         this.$refs.audio.pause()
-        this.$store.commit('setPaused',false)
+        // this.$store.commit('setPaused',false)
         this.$store.commit('setPaused',true)
       }
     },

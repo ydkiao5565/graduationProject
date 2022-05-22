@@ -12,9 +12,11 @@ export default {
     MainNav,PlayController
   },
   mounted(){
-    let userData = JSON.parse(localStorage.userData)
-    console.log(userData)
-    this.$store.commit('setUser',userData)
+    if(localStorage.userData) {
+      let userData = JSON.parse(localStorage.userData)
+      console.log(userData)
+      this.$store.commit('setUser',userData)
+    }
   }
 }
 </script>
@@ -30,7 +32,7 @@ export default {
   cursor:context-menu;
   padding-top: 60px;
   padding-left: 15vw;
-  
+  scroll-behavior:smooth
 }
 a {
   color: #333;
