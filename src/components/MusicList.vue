@@ -18,9 +18,9 @@
               </svg>
               <span @click="playAll">播放全部</span>
             </div>
-            <div class="like">
+            <!-- <div class="like">
               <span>收藏</span>
-            </div>
+            </div> -->
           </div>
           <div class="tag">
             <span>标签:</span>

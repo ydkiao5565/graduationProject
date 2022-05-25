@@ -1,7 +1,7 @@
 <template>
   <div class="searchTop">
     <div class="searchInput">
-      <svg class="icon" aria-hidden="true">
+      <svg class="icon" aria-hidden="true" @click="$router.go(0)">
         <use xlink:href="#icon-sousuo"></use>
       </svg>
       <input type="text" v-model="searchKey" class="searchinp" :placeholder="placeholder" @keydown.enter="saveKeyWord">
@@ -25,7 +25,7 @@
         <div class="list" v-for="(item,i) in searchSongs" key="i">
           <div class="num">
             <div class="count">{{changeNum(i+1)}}</div>
-            <svg class="icon" aria-hidden="true">
+            <svg class="icon" aria-hidden="true" @click="like(item.id)">
               <use xlink:href="#icon-aixin"></use>
             </svg>
           </div>
@@ -46,6 +46,7 @@
 </template>
 
 <script>
+import {likeMusic} from '@/api/index.js'
 import {searchMusic} from '@/api/index.js'
 export default {
   data() {
@@ -62,11 +63,15 @@ export default {
   },
   methods:{
     async saveKeyWord() {
+      //将当前关键词加入搜索关键词组中
       this.keyWordsList.push(this.searchKey)
+      //去除重复关键词
       this.keyWordsList = Array.from(new Set(this.keyWordsList))
+      //当关键词数大于10时，裁剪旧的关键词
       if(this.keyWordsList.length>10) {
         this.keyWordsList = this.keyWordsList.slice(this.keyWordsList.length-10,this.keyWordsList.length)
       }
+      //将关键词保存到localStorage中
       localStorage.keyWordsList = JSON.stringify(this.keyWordsList)
       let result = await searchMusic(this.searchKey)
       // console.log(result)
@@ -74,6 +79,17 @@ export default {
       console.log(this.searchSongs)
       this.$store.commit('setPlaylist',this.searchSongs)
 
+    },
+    async like(id) {
+      let islogin = this.$store.state.user.isLogin
+      if(islogin) {
+        let res = await likeMusic(id)
+        console.log(res)
+        alert('收藏成功')
+      }
+      else {
+        alert('请先登录')
+      }
     },
     changeNum(num) {
       if (num<10) {
@@ -106,6 +122,7 @@ export default {
     justify-content: flex-start;
     align-items: center;
     .icon {
+      cursor: pointer;
       width: 22px;
       height: 22px;
       fill: #666;

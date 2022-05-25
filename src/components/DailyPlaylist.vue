@@ -61,6 +61,7 @@ export default {
 .dPlaylist {
   margin-top: -10px;
   padding: 0 20px;
+  margin-bottom: 50px;
   .top {
     text-align: left;
     font-size: 20px;
@@ -80,12 +81,15 @@ export default {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
+    transition: all 1s ease-in;
     .list {
       margin-bottom: 10px;
-      // background-color:lightskyblue;
+      background-color:#fff;
+      border-radius: 10px;
       width: 19%;
       height: 280px;
       position: relative;
+      transition: all 0.1s ease-in;
         .number {
           display: flex;
           align-items: center;
@@ -139,6 +143,10 @@ export default {
         font-weight: 550;
         cursor: pointer;
       }
+    }
+    .list:hover {
+      width: 19.5%;
+      height: 280px;
     }
   }
 }

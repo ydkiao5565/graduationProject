@@ -1,6 +1,7 @@
 import { createStore } from 'vuex'
 import {getLyric,phoneLogin,getUserDetail} from '@/api/index.js'
 import unlogin from '@/assets/img/unlogin.jpeg'
+import musicLogo from '@/assets/img/musiclogo.png'
 
 export default createStore({
   state: {
@@ -21,6 +22,7 @@ export default createStore({
     lyric:'',
     IntervalId:0,
     currentTime:0,
+    musicLogo:musicLogo,
     user:{
       isLogin:false,
       account:{},
@@ -47,7 +49,7 @@ export default createStore({
         return{
           min,sec,mill,
           //截取歌词本体
-          lyric:item.slice(10,item.length),
+          lyric:item.slice(11,item.length),
           content:item,
           //计算每一句歌词开始时的毫秒数
           time:parseInt(mill)+parseInt(sec)*1000+parseInt(min)*60*1000

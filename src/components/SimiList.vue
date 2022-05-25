@@ -12,7 +12,7 @@
         <div class="list" v-for="(item,i) in simiSong" key="i">
           <div class="num">
             <div class="count">{{changeNum(i+1)}}</div>
-            <svg class="icon" aria-hidden="true">
+            <svg class="icon" aria-hidden="true" @click="like(item.id)">
               <use xlink:href="#icon-aixin"></use>
             </svg>
           </div>
@@ -33,6 +33,7 @@
 </template>
 
 <script>
+import {likeMusic} from '@/api/index.js'
 import {getSimiList} from '@/api/index.js'
 import {getPlaylistDetail} from '@/api/index.js'
 export default {
@@ -53,6 +54,11 @@ export default {
         num = '0' + num
       }
       return num
+    },
+    async like(id) {
+      let res = await likeMusic(id)
+      console.log(res)
+      alert('收藏成功')
     },
     changeMusic(value) {
       this.$store.commit('setPlayCurrent',value)

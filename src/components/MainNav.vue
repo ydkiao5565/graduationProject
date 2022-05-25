@@ -1,7 +1,7 @@
 <template>
   <div class="mainNav">
-    <div class="logo">
-      <img src="" alt="">
+    <div class="logo" @click="$router.push('/')">
+      <img :src="musicLogo" alt="">
     </div>
     <div class="content">
       <div class="btn" id="left" @click="$router.go(-1)">
@@ -24,7 +24,6 @@
     <div class="mine1">
       <img :src="avatarUrl" alt="" @click="$router.push('/mine')">
       <span>{{this.nickname}}</span>
-      
     </div>
   </div>
 </template>
@@ -35,7 +34,8 @@ export default {
   data() {
     return {
       avatarUrl:'',
-      nickname:''
+      nickname:'',
+      musicLogo:''
     }
   },
   computed:{
@@ -46,6 +46,7 @@ export default {
   mounted() {
     this.avatarUrl = this.$store.state.user.userDetail.data.profile.avatarUrl
     this.nickname = this.$store.state.user.userDetail.data.profile.nickname
+    this.musicLogo = this.$store.state.musicLogo
   },
   updated() {
     this.avatarUrl = this.$store.state.user.userDetail.data.profile.avatarUrl
@@ -76,6 +77,11 @@ export default {
   .logo{
     flex: 1;
     // background-color:lightpink;
+    img {
+      width: 90%;
+      margin-top: -28px;
+      cursor: pointer;
+    }
   }
   .content {
     flex: 3;

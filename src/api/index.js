@@ -57,5 +57,10 @@ export function getSimiList(id) {
 
 //喜欢歌曲
 export function likeMusic(id,b=true) {
-  return axios.get(`http://localhost:3000/like=${b}?id=${id}`)
+  return axios.get(`http://localhost:3000/like?like=${b}&id=${id}`)
+}
+
+//收藏歌单
+export function getSubscribe(id,t=1) {
+  return axios.get(`http://localhost:3000/playlist/subscribe?t=${t}&id=${id}`)
 }

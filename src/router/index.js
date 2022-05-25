@@ -70,6 +70,7 @@ const routes = [
       console.log(store.state.user)
       if(store.state.user.isLogin) {
         next()
+        // window.location.reload()
       }
       else {
         next('/login')

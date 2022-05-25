@@ -1,6 +1,6 @@
 <template>
   <div class="musicLyric">
-    <div class="bg" :style="{backgroundImage: `url(${this.$store.state.playlist[this.$store.state.playCurrentIndex].al.picUrl})`}">
+    <div class="bg">
       <img :src="this.$store.state.playlist[this.$store.state.playCurrentIndex].al.picUrl" alt="">
     </div>
     <div class="title">
@@ -44,7 +44,7 @@ export default {
   position: fixed;
   left: 0;
   top: 0;
-  background-color: #aaa;
+  background-color: #666;
   width: 100%;
   height: 100%;
   z-index: 100;
@@ -85,7 +85,7 @@ export default {
       color: #eee;
     }
     .active {
-      color: #666;
+      color: #333;
       font-size: 22px;
     }
   }

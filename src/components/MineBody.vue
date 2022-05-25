@@ -23,7 +23,7 @@ export default {
   
   methods:{
     logout() {
-      
+      sessionStorage.setItem('create',2)
       localStorage.removeItem('userData')
       this.$router.push('/login')
     }

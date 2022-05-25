@@ -18,7 +18,7 @@
               </svg>
               <span @click="playAll">播放全部</span>
             </div>
-            <div class="like">
+            <div class="like" @click="subscribe(list.playlist.id)">
               <span>收藏</span>
             </div>
           </div>
@@ -44,6 +44,7 @@
 
 <script>
 import test2 from '@/components/ListTableTest.vue'
+import {getSubscribe} from '@/api/index.js'
 import {getPlaylistDetail} from '@/api/index.js'
 import {getLogStatus} from '@/api/index.js'
 export default {
@@ -78,6 +79,17 @@ export default {
     playAll() {
       this.$store.commit('setPlayCurrent',0)
       this.$store.commit('setPaused',true)
+    },
+    async subscribe(id) {
+      let islogin = this.$store.state.user.isLogin
+      if(islogin) {
+        let res = await getSubscribe(id)
+        console.log(res)
+        alert('收藏成功')
+      }
+      else {
+        alert('请先登录')
+      }
     }
   }
 }
@@ -157,6 +169,9 @@ export default {
             line-height: 32px;
             font-size: 15px;
             color: #ccc;
+          }
+          .like:hover {
+            cursor: pointer;
           }
         }
         .tag {

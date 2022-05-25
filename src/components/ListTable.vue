@@ -10,9 +10,9 @@
       <div class="list" v-for="(item,i) in tracks" key="i">
         <div class="num">
           <div class="count">{{changeNum(i+1)}}</div>
-          <svg class="icon" aria-hidden="true">
+          <!-- <svg class="icon" aria-hidden="true">
             <use xlink:href="#icon-aixin"></use>
-          </svg>
+          </svg> -->
         </div>
         <div class="title">{{item.name}}</div>
         <div class="author">{{item.ar[0].name}}</div>

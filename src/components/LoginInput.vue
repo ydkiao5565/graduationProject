@@ -31,16 +31,48 @@ export default {
   data() {
     return {
       phone:'',
-      password:''
+      password:'',
+      message:''
     }
   },
   methods:{
     async loginEvent() {
-     let result = await this.$store.dispatch('login',{phone:this.phone,password:this.password})
-     if(result.data.code==200) {
-       this.$router.push('/mine')
-     }
+      if(!this.phone) {
+            console.log(1)
+            this.message = '请输入账号'
+            alert(this.message)
+            return
+          }
+          else if (!this.password) {
+            console.log(2)
+            this.message = '请输入密码'
+            alert(this.message)
+            return
+          }
+      let captchaId = '2098950169'
+      let self = this
+      var captcha =  new TencentCaptcha(captchaId, async function(res) {
+        if(res.ret === 0) {
+          let result = await self.$store.dispatch('login',{phone:self.phone,password:self.password})
+          console.log(result.data.code)
+          if(result.data.code!=200){
+            console.log(3)
+            self.message = '账号或密码错误'
+            alert(self.message)
+          }
+          else if(result.data.code==200) {
+            sessionStorage.setItem('create',1)
+            self.$router.push('/mine')
+          }
+
+        }
+      })
+      captcha.langFun()
+      // 滑块显示
+      captcha.show()
+
     }
+
   }
 }
 </script>
